@@ -9,22 +9,47 @@
     <link rel="stylesheet" href="assets/stylesheets/reset.css">
     <link rel="stylesheet" href="assets/stylesheets/index.css">
     <link rel="stylesheet" href="assets/stylesheets/form.css">
-    <link rel="stylesheet" href="assets/stylesheets/create.css">
     <link rel="stylesheet" href="assets/stylesheets/progress.css">
-    <link rel="stylesheet" href="assets/stylesheets/results.css">
     <script src="/assets/javascript/index.js" charset="utf-8"></script>
 </head>
 
 <body id="race">
-    <header>
-        <h1>Start Your Pod Racer Sim</h1>
+    <header class="race-track">
+        <div class="racer-colour-1"></div>
+        <div class="racer-colour-2"></div>
+        <div class="racer-colour-3"></div>
+        <div class="racer-colour-4"></div>
+        <div class="racer-colour-5"></div>
+        <div class="bg-anim">
+            <div class="bg-skew">
+                <div class="bg-racer orange one"></div>
+                <div class="bg-racer blue two"></div>
+                <div class="bg-racer pink three"></div>
+                <div class="bg-racer green four"></div>
+                <div class="bg-racer purple five"></div>
+                <div class="bg-racer orange six"></div>
+                <div class="bg-racer blue seven"></div>
+                <div class="bg-racer pink eight"></div>
+                <div class="bg-racer green nine"></div>
+                <div class="bg-racer purple ten"></div>
+                <div class="bg-racer orange eleven"></div>
+                <div class="bg-racer blue twelve"></div>
+                <div class="bg-racer pink thirteen"></div>
+                <div class="bg-racer green fourteen"></div>
+                <div class="bg-racer purple fifteen"></div>
+                <div class="bg-racer orange sixteen"></div>
+                <div class="bg-racer blue seventeen"></div>
+                <div class="bg-racer pink eighteen"></div>
+                <div class="bg-racer green nineteen"></div>
+                <div class="bg-racer purple twenty"></div>
+            </div>
+        </div>
     </header>
-    <main>
+    <main class="create-racer-wrapper">
         <section id="create-race">
             <h2>Get Started</h2>
-            <h3>Create Your Race</h3>
             <form id="create-race">
-                <h3>Choose your track</h3>
+                <h3 class="label">Choose your track</h3>
                 <ul class="cards-list" id="tracks">
                     <!-- filled via js -->
                 </ul>
@@ -33,7 +58,7 @@
                     <option value="trackname" id="trackname">test</option>
                 </select>
 
-                <h3>Choose your racer</h3>
+                <h3 class="label">Choose your racer</h3>
                 <ul class="cards-list" id="racers">
                     <!-- filled via js -->
                 </ul>
@@ -41,10 +66,9 @@
                 <select id="podRacer" name="podRacer" class="required sr-only">
                     <option value="test5">test</option>
                 </select>
-                <button class="button" type="submit" id="submit-create-race">Start Race</button>
+                <button class="button start" type="submit" id="submit-create-race">Start Race</button>
             </form>
         </section>
     </main>
-    <footer></footer>
 </body>
 </html>

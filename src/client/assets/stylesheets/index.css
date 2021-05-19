@@ -1,6 +1,115 @@
 /* -------------------  GENERAL SITE STYLES --------------------- */
 
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700;900&display=swap');
+
+@keyframes bg-load {
+  from {
+    height: 0vw;
+  }
+  to {
+    height: 200vw;
+  }
+}
+
+@keyframes button-rainbow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
 /* -------------------  MOBILE  --------------------- */
+
+
+#race {
+  display: flex;
+  flex-direction: column;
+  font-family: Arial;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+#tracks {
+  overflow: scroll;
+}
+
+#racers {
+  overflow: scroll;
+}
+
+.race-track {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  background-color: ghostwhite;
+}
+
+.create-racer-wrapper {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 30px 60px 30px 60px;
+  background-color: ghostwhite;
+  overflow: hidden;
+}
+
+.start-modal {
+  position: relative;
+  width: 75%;
+  max-width: 500px;
+  z-index: 2;
+  background-color: white;
+  padding: 40px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: white;
+  text-shadow: 3px 2px hsl(0, 2%, 51%);
+  font-size: 50px;
+  text-transform: uppercase;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+}
+
+
+
+h2 {
+  color: #1b1b1b;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 1.3;
+  padding: 10px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+}
+
+h2.centred {
+  text-align: center;
+}
+
+h3 {
+  color: #1b1b1b;
+  font-weight: normal;
+  font-size: 18px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+}
+
+h3.centred {
+  text-align: center;
+}
 
 .sr-only {
   position: absolute;
@@ -13,43 +122,39 @@
   border: 0;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  font-family: Arial;
-  min-height: 100vh;
-}
-
 header {
-  background-image: url('https://via.placeholder.com/1150');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  pointer-events: none;
 }
 
-h1 {
-  color: white;
-  text-shadow: 3px 2px hsl(0, 2%, 51%);
-  font-size: 70px;
-  text-transform: uppercase;
+.intro-main {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-h2 {
-  color: black;
-  font-weight: bold;
-  font-size: 30px;
-  line-height: 1.3;
-  padding: 10px 0;
+h3.player-1 {
+  color: #FFA62B
 }
-
-h3 {
-  color: black;
-  font-weight: normal;
-  font-size: 25px;
+h3.player-2 {
+  color: #82C0CC
+}
+h3.player-3 {
+  color: #FF99C8
+}
+h3.player-4 {
+  color: #32af66
+}
+h3.player-5 {
+  color: #6C6EA0
 }
 
 h4 {
@@ -61,59 +166,378 @@ h4 {
 p {
   color: black;
   font-weight: normal;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 300;
+  padding-bottom: 5px;
 }
 
-.button {
+.large-text {
+  font-size: 20px;
+}
+
+button {
+  border: none;
+}
+
+.button, #submit-create-race, #create-new-race {
+  position: relative;
   width: 250px;
-  padding: 20px 10px;
-  background-color: green;
+  height: 65px;
+  padding: 15px 10px;
+  background-color: #7B7DAA;
   cursor: pointer;
   border-radius: 4px;
-  border-color: 1px solid green;
-  color: white;
+  color: #1b1b1b;
   font-size: 20px;
-  text-transform: uppercase;
-  margin: 20px 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  margin-top: 30px;
   display: block;
   text-align: center;
   text-decoration: none;
+  transition: all 100ms ease-out;
+  z-index: 1;
+  overflow: hidden;
 }
 
-main {
-  flex: 1;
+.button::before, #create-new-race::before {
+  content: '';
+  position: absolute;
+  top: -125px;
+  left: -25px;
+  border-radius: 50%;
+  min-width: 300px;
+  min-height: 300px;
+  background: conic-gradient(
+    #FFA62B 0deg,
+    #82C0CC 60deg,
+    #FF99C8 150deg,
+    #32af66 220deg,
+    #6C6EA0 300deg,
+    #FFA62B 360deg
+  );
+  animation: button-rainbow 2s infinite linear;
 }
 
-section {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 30px 0;
+.button.start {
+  opacity: 0.5;
+  transition: all 0.5 ease-out;
 }
 
-footer {
-  height: 200px;
-  background-color: black;
+.button.start.home {
+  opacity: 1;
+  transition: all 0.5 ease-out;
 }
+
+.button.start::after {
+  content: 'Start my race';
+  left: 5px;
+  bottom: 5px;
+  position: absolute;
+  width: 240px;
+  height: 55px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#create-new-race::after {
+  content: 'Start a new race';
+  left: 5px;
+  bottom: 5px;
+  position: absolute;
+  width: 240px;
+  height: 55px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button:hover, #create-new-race:hover {
+  transform: translateY(-5px);
+}
+
+.divider-line {
+  width: 100%;
+  height: 3px;
+  background-color: #1b1b1b;
+  margin-top: 5px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+}
+
+.bg-anim {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-width: 100vh;
+  overflow: hidden;
+  background-image: url(../images/candyland.png);
+  background-position: bottom;
+  background-size: cover;
+}
+
+.bg-skew {
+  display: flex;
+  position: absolute;
+  transform: rotateZ(15deg);
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.bg-racer {
+ min-width: 10vw;
+ border-radius: 100px;
+}
+
+.bg-racer.orange {
+  background-image: linear-gradient(to right, #FFA62B, #FFCC87);
+}
+
+.bg-racer.blue {
+  background-image: linear-gradient(to right, #82C0CC, #B6D9E1);
+}
+
+.bg-racer.pink {
+  background-image: linear-gradient(to right, #FF99C8, #FFCCE3);
+}
+
+.bg-racer.green {
+  background-image: linear-gradient(to right, #32AF66, #73C997);
+}
+
+.bg-racer.purple {
+  background-image: linear-gradient(to right, #6C6EA0, #8D8FB5);
+}
+
+.bg-racer.one {
+  animation-name: bg-load;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+.bg-racer.two {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 100ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.three {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 200ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.four {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 300ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.five {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 400ms;
+  animation-fill-mode: forwards;
+}
+
+.bg-racer.six {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 500ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.seven {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 600ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.eight {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 700ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.nine {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 800ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.ten {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 900ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.eleven {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+.bg-racer.twelve {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1100ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.thirteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1200ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.fourteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1300ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.fifteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1400ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.sixteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1500ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.seventeen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1600ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.eighteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1700ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.nineteen {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1800ms;
+  animation-fill-mode: forwards;
+}
+.bg-racer.twenty {
+  animation-name: bg-load;
+  animation-duration: 2s;
+  animation-delay: 1900ms;
+  animation-fill-mode: forwards;
+}
+
 
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-  header {
-    height: 100vh;
-  }
+
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
-  header {
-    height: 700px;
+
+
+  h1 {
+    color: white;
+    text-shadow: 3px 2px hsl(0, 2%, 51%);
+    font-size: 70px;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
   }
+  
+  h2 {
+    color: #1b1b1b;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 1.3;
+    padding: 10px 0;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+  }
+  
+  h3 {
+    color: #1b1b1b;
+    font-weight: normal;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+  }
+
+  #race {
+    display: flex;
+    flex-direction: row-reverse;
+    font-family: Arial;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .race-track {
+    position: sticky;
+    top: 0;
+    width: 45%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: ghostwhite;
+  }
+
+  .create-racer-wrapper {
+    width: 55%;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 20px 30px 20px 30px;
+    background-color: ghostwhite;
+  }
+
+  .start-modal {
+    position: relative;
+    width: 75%;
+    max-width: 500px;
+    z-index: 2;
+    background-color: white;
+    padding: 40px 40px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1);
+  }
+
+  .race-track {
+    position: relative;
+    top: 0;
+    width: 45%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: ghostwhite;
+  }
+
+  
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
 
 @media (min-width: 1824px) {
-  header {
-    height: 700px;
-  }
+
 }

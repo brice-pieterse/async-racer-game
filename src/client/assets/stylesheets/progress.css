@@ -1,27 +1,180 @@
 /* PROGRESS PAGE SPECIFIC STYLES */
 
 /* -------------------  MOBILE  --------------------- */
-header {
-  background-image: url('https://via.placeholder.com/1150');
-}
 
-main#two-columns {
-    margin: 50px 0;
+
+@keyframes button-rainbow {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
+  }
+
+.leaderboard-wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 50vh;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: ghostwhite;
+    padding-bottom: 40px;
+    padding-top: 40px;
 }
 
-main#two-columns section {
-    max-width: 50vw;
+.leader-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 20px;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 20px 40px 20px 40px;
+    width: 90vw;
+    max-width: 500px;
 }
 
-section#accelerate button {
+.countdown-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 101;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF99C8;
+}
+
+.racer {
+    height: 10vh;
+}
+
+.racer-colour-1 {
+    position: absolute;
+    left: -100%;
+    top: 0px;
+    width: 100%;
+    background-color: #FFA62B;
+}
+.racer-colour-2 {
+    position: absolute;
+    left: -100%;
+    top: 10vh;
+    width: 100%;
+    background-color: #82C0CC;
+}
+.racer-colour-3 {
+    position: absolute;
+    left: -100%;
+    top: 20vh;
+    width: 100%;
+    background-color: #FF99C8;
+}
+.racer-colour-4 {
+    position: absolute;
+    left: -100%;
+    top: 30vh;
+    width: 100%;
+    background-color: #32af66;
+}
+.racer-colour-5 {
+    position: absolute;
+    left: -100%;
+    top: 40vh;
+    width: 100%;
+    background-color: #6C6EA0;
+}
+
+.racer-name {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+
+
+#accelerate {
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
+
+#gas-peddle {
+    position: relative;
     height: 300px;
     width: 300px;
     margin: 30px auto;
     border-radius: 180%;
-    background-color: green;
-    border-color: rgb(14, 166, 6);
     cursor: pointer;
+    color: #1b1b1b;
+    font-size: 20px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    transition: all 100ms ease-out;
+    z-index: 1;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 200ms ease-in-out;
+  }
+
+#gas-peddle:hover {
+    box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.25);
+}
+
+#gas-peddle::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    left: -150px;
+    border-radius: 50%;
+    min-width: 500px;
+    min-height: 500px;
+    background: conic-gradient(
+        #FFA62B 0deg,
+        #82C0CC 60deg,
+        #FF99C8 150deg,
+        #32af66 220deg,
+        #6C6EA0 300deg,
+        #FFA62B 360deg
+    );
+    animation: button-rainbow 2s infinite linear;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+#gas-peddle::after {
+    content: 'Click Me To Win!';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 290px;
+    height: 290px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    transform: translateY(-5px);
 }
 
 #big-numbers {
@@ -32,11 +185,107 @@ section#accelerate button {
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
 
+    .leader-modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 20px 40px 20px 40px;
+        width: 75vw;
+        max-width: 500px;
+    }
+
+
+
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
+
+    .leaderboard-wrapper {
+        width: 55%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: ghostwhite;
+    }
+    
+    .leader-modal {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        border-radius: 20px;
+        box-shadow: 1px 1px 10px rgb(0, 0, 0, 0.1);
+        background-color: white;
+        padding: 40px 60px 40px 60px;
+        width: 35vw;
+        max-width: 500px;
+    }
+    
+    .countdown-wrapper {
+        position: flex;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 101;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .racer {
+        height: 20vh;
+    }
+
+    .racer-name {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+    
+    .racer-colour-1 {
+        position: absolute;
+        left: -100%;
+        top: 0px;
+        width: 100%;
+        background-color: #FFA62B;
+    }
+    .racer-colour-2 {
+        position: absolute;
+        left: -100%;
+        top: 20vh;
+        width: 100%;
+        background-color: #82C0CC;
+    }
+    .racer-colour-3 {
+        position: absolute;
+        left: -100%;
+        top: 40vh;
+        width: 100%;
+        background-color: #FF99C8;
+    }
+    .racer-colour-4 {
+        position: absolute;
+        left: -100%;
+        top: 60vh;
+        width: 100%;
+        background-color: #32af66;
+    }
+    .racer-colour-5 {
+        position: absolute;
+        left: -100%;
+        top: 80vh;
+        width: 100%;
+        background-color: #6C6EA0;
+    }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */
