@@ -1,5 +1,5 @@
 
-var store = {
+let store = {
 	track_id: undefined,
 	player_id: undefined,
 	race_id: undefined,
@@ -87,7 +87,7 @@ async function handleCreateRace() {
 
 	createRace(player_id, track_id)
 	.then(async (race) => {
-		let segments = await prepareSegments(race)
+		const segments = await prepareSegments(race)
 		store = Object.assign(store, { race_id: race.ID, segments: segments })
 		return race.ID;
 	})
@@ -101,7 +101,7 @@ async function handleCreateRace() {
 
 function runRace(raceID) {
 	return new Promise(resolve => {
-	let raceInterval = setInterval(() => {
+	const raceInterval = setInterval(() => {
 		getRace(raceID)
 		.then((res) => {
 			if (res.status === "in-progress"){
@@ -170,7 +170,7 @@ function handleSelectTrack(target) {
 const handleAccelerate = (() => {
 	let lastclick = new Date();
 	return () => {
-		let newclick = new Date();
+		const newclick = new Date();
 		if (newclick - lastclick >= 1000){
 			btn = document.getElementById("gas-peddle")
 			lastclick = newclick;
@@ -195,7 +195,7 @@ const shakePedal = (btn) => {
 
 function prepareSegments(race){
 	return new Promise((resolve) => {
-		let segments = race.Track.segments.length;
+		const segments = race.Track.segments.length;
 		resolve(segments)
 	})
 	.catch(err => console.log(err))
@@ -205,7 +205,7 @@ function updatePositions(race){
 	const segments = store.segments
 	for (let car of race.positions){
 		const racer = document.querySelector(`.racer-colour-${car.id}`)
-		let progress = car.segment/segments
+		const progress = car.segment/segments
 		progress = progress.toFixed(3)
 		progress = parseFloat(progress * 100)
 		racer.style.left = `${-100 + progress}%`
@@ -275,7 +275,7 @@ function renderCountdown(count) {
 	`
 }
 
-function renderRaceStartView(trackId, racers) {
+function renderRaceStartView() {
 	
 	return `
 		<div class="race-track">
@@ -303,13 +303,13 @@ function renderRaceStartView(trackId, racers) {
 
 function resultsView(positions) {
 
-	let userPlayer = positions.find(e => e.id === parseInt(store.player_id))
+	const userPlayer = positions.find(e => e.id === parseInt(store.player_id))
 	userPlayer.driver_name += " (you)"
 	positions = positions.sort((a, b) => (a.final_position < b.final_position) ? -1 : 1)
 	let count = 1
 
 	const results = positions.map(p => {
-		let markup = `
+		const markup = `
 			<tr>
 				<td>
 					<h3 class="racer-name player-${p.id}">${count++} - ${p.driver_name}</h3>
@@ -334,7 +334,7 @@ function resultsView(positions) {
 function raceProgress(positions) {
 
 
-	let userPlayer = positions.find(e => e.id === parseInt(store.player_id))
+	const userPlayer = positions.find(e => e.id === parseInt(store.player_id))
 	userPlayer.driver_name += " (you)"
 
 	let leaders = []
@@ -348,14 +348,14 @@ function raceProgress(positions) {
 	const segments = store.segments
 
 	const results = leaders.map(p => {
-		let progress = p.segment/segments
+		const progress = p.segment/segments
 		progress = progress.toFixed(3)
 		progress = parseFloat(progress * 100)
 		if (progress === 100){
 			p.driver_name += " (finished)"
 		}
 
-		let markup = `
+		const markup = `
 			<tr>
 				<td>
 					<h3 class="racer-name player-${p.id}">${count++} - ${p.driver_name}</h3>
@@ -414,7 +414,7 @@ function getRacers() {
 }
 
 function createRace(player_id, track_id) {
-	let id = Math.random()*10000
+	const id = Math.random()*10000
 	id = Math.round(id)
 
 	player_id = parseInt(player_id)
